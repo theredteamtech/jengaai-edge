@@ -1,0 +1,24 @@
+{
+  "dataset_version": "jengacoder-v1",
+  "random_seed": 42,
+  "total_examples": 180,
+  "training_examples": 160,
+  "validation_examples": 20,
+  "evaluation_leak_filter": true,
+  "training_category_counts": {
+    "arduino_state_machine": 72,
+    "kiswahili_teaching": 36,
+    "retention": 8,
+    "debugging": 18,
+    "arduino_reasoning": 18,
+    "constraints": 8
+  },
+  "validation_category_counts": {
+    "arduino_state_machine": 8,
+    "kiswahili_teaching": 4,
+    "arduino_reasoning": 2,
+    "retention": 2,
+    "debugging": 2,
+    "constraints": 2
+  }
+}

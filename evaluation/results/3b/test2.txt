@@ -1,0 +1,71 @@
+User:
+
+Create a small FastAPI application for recording student attendance.
+
+Requirements:
+1. POST /attendance accepts student_name and status.
+2. status must only be "present" or "absent".
+3. Store records in memory only.
+4. GET /attendance returns all records.
+5. GET /attendance/{student_name} returns that student's records.
+6. Return HTTP 404 if the student does not exist.
+7. Give complete runnable Python code.
+8. Do not use a database or external service.
+
+Assistant:
+Certainly! Below is a complete Python FastAPI application that meets the specified requirements. This application stores student attendance records in memory and provides endpoints to record, retrieve, and query attendance.
+
+```python
+from fastapi import FastAPI, HTTPException, Query
+from typing import List, Dict
+
+app = FastAPI()
+
+# In-memory storage for attendance records
+attendance_records: Dict[str, List[str]] = {}
+
+@app.post("/attendance")
+async def record_attendance(student_name: str, status: str):
+    if status not in ["present", "absent"]:
+        raise HTTPException(status_code=400, detail="Status must be 'present' or 'absent'")
+    
+    if student_name not in attendance_records:
+        attendance_records[student_name] = []
+    
+    attendance_records[student_name].append(status)
+    return {"message": "Attendance recorded successfully"}
+
+@app.get("/attendance")
+async def get_all_attendance():
+    return attendance_records
+
+@app.get("/attendance/{student_name}")
+async def get_student_attendance(student_name: str):
+    if student_name not in attendance_records:
+        raise HTTPException(status_code=404, detail="Student not found")
+    
+    return attendance_records[student_name]
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+### Explanation:
+
+1. **FastAPI Setup**: The application is set up using FastAPI, a modern, high-performance web framework for building APIs.
+
+2. **In-Memory Storage**: The attendance records are stored in a dictionary `attendance_records`, which is a simple in-memory data structure.
+
+3. **POST /attendance**: This endpoint records a student's attendance. It checks if the status is valid and appends the status to the student's record in the dictionary.
+
+4. **GET /attendance**: This endpoint returns all recorded attendance records.
+
+5. **GET /attendance/{student_name}**: This endpoint returns the attendance records for a specific student. It raises a 404 error if the student does not exist.
+
+6. **Error Handling**: The application includes basic error handling for invalid statuses and non-existent students.
+
+7. **Running the Application**: The application is run using Uvicorn, a ASGI server, which listens on `0.0.0.0` at port `8000`.
+
+This code provides a simple and effective way to manage student attendance records in memory.
+

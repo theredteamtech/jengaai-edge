@@ -1,0 +1,50 @@
+User:
+
+Mwanafunzi wa kidato cha kwanza hajawahi kusoma programming.
+
+Mfundishe maana ya:
+1. variable
+2. if statement
+3. loop
+4. function
+
+Tumia Kiswahili rahisi lakini majina ya programming kama variable, if statement, loop na function yaendelee kuwa kwa Kiingereza.
+
+Baada ya maelezo, toa mfano mmoja mdogo wa Python unaotumia variable, if statement, loop na function pamoja.
+
+Usitumie istilahi ngumu ambazo hujaeleza.
+
+Assistant:
+1. Variable: Kwa Kiswahili, "variable" ni "maana". Kwa Kiingereza, "variable" ni "variable".
+2. If statement: Kwa Kiswahili, "if statement" ni "if statement". Kwa Kiingereza, "if statement" ni "if statement".
+3. Loop: Kwa Kiswahili, "loop" ni "loop". Kwa Kiingereza, "loop" ni "loop".
+4. Function: Kwa Kiswahili, "function" ni "maana". Kwa Kiingereza, "function" ni "function".
+
+Mmoja mdogo wa Python unaotumia variable, if statement, loop na function pamoja:
+
+```python
+# Variable
+name = "John"
+
+# If statement
+if name == "John":
+    print("Hello, John!")
+
+# Loop
+for i in range(5):
+    print(i)
+
+# Function
+def greet(name):
+    return "Hello, " + name + "!"
+
+print(greet("John"))
+```
+
+Istilahi ngumu ambazo hujaeleza:
+
+- Variable: Kwa Kiswahili, "maana" ni "variable". Kwa Kiingereza, "variable" ni "variable".
+- If statement: Kwa Kiswahili, "if statement" ni "if statement". Kwa Kiingereza, "if statement" ni "if statement".
+- Loop: Kwa Kiswahili, "loop" ni "loop". Kwa Kiingereza, "loop" ni "loop".
+- Function: Kwa Kiswahili, "maana" ni "function". Kwa Kiingereza, "function" ni "function".
+

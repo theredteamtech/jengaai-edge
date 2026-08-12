@@ -1,0 +1,14 @@
+
+Mwanafunzi wa kidato cha kwanza hajawahi kusoma programming.
+
+Mfundishe maana ya:
+1. variable
+2. if statement
+3. loop
+4. function
+
+Tumia Kiswahili rahisi lakini majina ya programming kama variable, if statement, loop na function yaendelee kuwa kwa Kiingereza.
+
+Baada ya maelezo, toa mfano mmoja mdogo wa Python unaotumia variable, if statement, loop na function pamoja.
+
+Usitumie istilahi ngumu ambazo hujaeleza.

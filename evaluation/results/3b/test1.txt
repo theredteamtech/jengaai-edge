@@ -1,0 +1,45 @@
+User:
+
+The following Python function is supposed to return the average of valid numeric values, while ignoring None values. It contains bugs.
+
+```python
+def average(values):
+    total = 0
+    for value in values:
+        total += value
+    return total / len(values)
+
+Correct the function so that:
+
+None values are ignored.
+An empty list returns 0.
+A list containing only None values returns 0.
+Do not use external libraries.
+Give the corrected code and briefly explain the bugs.
+
+Assistant:
+To correct the function so that it ignores `None` values and handles edge cases like an empty list or a list containing only `None` values, we need to make a few changes. Here's the corrected code:
+
+```python
+def average(values):
+    total = 0
+    count = 0
+    for value in values:
+        if value is not None:
+            total += value
+            count += 1
+    if count == 0:
+        return 0
+    return total / count
+```
+
+### Explanation of the Bugs:
+
+1. **Handling `None` Values**: The original function did not check if a value was `None` before adding it to the total. This led to incorrect results when `None` values were present in the list.
+
+2. **Handling Empty Lists**: The original function did not handle the case where the list was empty. It would return `0` if the list was empty, which is correct, but it did not handle the case where the list contained only `None` values.
+
+3. **Counting Valid Values**: The original function did not keep track of the number of valid values (i.e., non-`None` values) to ensure that the division by zero did not occur when the list was empty or contained only `None` values.
+
+By adding a `count` variable to keep track of the number of valid values and checking if `count` is zero before returning `0`, we ensure that the function behaves correctly in all edge cases.
+

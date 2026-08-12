@@ -1,0 +1,58 @@
+User:
+
+Create a small FastAPI application for recording student attendance.
+
+Requirements:
+1. POST /attendance accepts student_name and status.
+2. status must only be "present" or "absent".
+3. Store records in memory only.
+4. GET /attendance returns all records.
+5. GET /attendance/{student_name} returns that student's records.
+6. Return HTTP 404 if the student does not exist.
+7. Give complete runnable Python code.
+8. Do not use a database or external service.
+
+Assistant:
+Here is a small FastAPI application that meets your requirements:
+
+```python
+from fastapi import FastAPI, HTTPException
+from typing import List, Dict
+
+app = FastAPI()
+
+# Store records in memory
+attendance_records: Dict[str, List[str]] = {}
+
+@app.post("/attendance")
+async def record_attendance(student_name: str, status: str):
+    if status not in ["present", "absent"]:
+        raise HTTPException(status_code=400, detail="Status must be 'present' or 'absent'")
+    
+    if student_name in attendance_records:
+        attendance_records[student_name].append(status)
+    else:
+        attendance_records[student_name] = [status]
+    
+    return {"message": "Attendance recorded successfully"}
+
+@app.get("/attendance")
+async def get_attendance():
+    return attendance_records
+
+@app.get("/attendance/{student_name}")
+async def get_student_attendance(student_name: str):
+    if student_name not in attendance_records:
+        raise HTTPException(status_code=404, detail="Student not found")
+    
+    return attendance_records[student_name]
+```
+
+To run this application, you can use the following command:
+
+```bash
+uvicorn main:app --reload
+```
+
+This will start the FastAPI server on `http://127.0.0.1:8000`. You can then use tools like Postman or curl to interact with the API.
+

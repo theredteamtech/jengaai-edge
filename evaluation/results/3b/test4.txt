@@ -1,0 +1,102 @@
+User:
+
+I have only:
+- Arduino Uno
+- one HC-SR04 ultrasonic sensor
+- one SG90 servo motor
+- jumper wires
+
+Create an automatic dustbin.
+
+Requirements:
+1. Open when an object is 40 cm or nearer.
+2. Remain open while the object remains within 40 cm.
+3. Close 2 seconds after the object leaves.
+4. If the object returns before the 2 seconds finish, keep the lid open.
+5. Do not use any component I did not list.
+6. Give every pin connection.
+7. Give complete Arduino code.
+8. Handle the case where the HC-SR04 receives no echo.
+9. Do not use an external ultrasonic library.
+
+Assistant:
+To create an automatic dustbin using the Arduino Uno, HC-SR04 ultrasonic sensor, and SG90 servo motor, you can follow the steps below. This setup will ensure that the dustbin opens when an object is 40 cm or nearer, remains open while the object remains within 40 cm, and closes 2 seconds after the object leaves.
+
+### Components:
+- Arduino Uno
+- HC-SR04 ultrasonic sensor
+- SG90 servo motor
+- Jumper wires
+
+### Pin Connections:
+1. **HC-SR04:**
+   - VCC: Connect to 5V on the Arduino Uno.
+   - GND: Connect to GND on the Arduino Uno.
+   - Trig: Connect to digital pin 9 on the Arduino Uno.
+   - Echo: Connect to digital pin 10 on the Arduino Uno.
+
+2. **SG90 Servo Motor:**
+   - VCC: Connect to 5V on the Arduino Uno.
+   - GND: Connect to GND on the Arduino Uno.
+   - PWM: Connect to digital pin 11 on the Arduino Uno.
+
+### Arduino Code:
+```cpp
+#include <Servo.h>
+
+Servo myServo;
+int trigPin = 9;
+int echoPin = 10;
+int servoPin = 11;
+int duration, distance;
+int servoPosition = 0;
+
+void setup() {
+  Serial.begin(9600);
+  myServo.attach(servoPin);
+  myServo.write(servoPosition);
+}
+
+void loop() {
+  // Send a 10 microsecond pulse to the trigger pin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Read the echo pin
+  duration = pulseIn(echoPin, HIGH);
+
+  // Calculate the distance
+  distance = duration * 0.034 / 2; // Speed of sound is 340 m/s
+
+  // Print the distance
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Control the servo
+  if (distance <= 40) {
+    if (servoPosition != 180) {
+      myServo.write(180);
+      servoPosition = 180;
+      delay(2000); // Close the lid after 2 seconds
+    }
+  } else {
+    if (servoPosition != 0) {
+      myServo.write(0);
+      servoPosition = 0;
+    }
+  }
+}
+```
+
+### Explanation:
+- **HC-SR04:** The sensor sends a 10 microsecond pulse to the trigger pin, waits for the echo to return, and calculates the distance based on the time it takes.
+- **Servo Motor:** The servo motor is controlled using PWM on digital pin 11. It is initially set to 0 degrees (open).
+- **Loop:** The loop continuously reads the distance from the HC-SR04. If the distance is 40 cm or less, the servo is set to 180 degrees (closed). If the distance is greater than 40 cm, the servo is set back to 0 degrees (open).
+- **Delay:** The servo stays closed for 2 seconds after the object leaves.
+
+This code will ensure that the dustbin opens when an object is 40 cm or nearer, remains open while the object remains within 40 cm, and closes 2 seconds after the object leaves.
+

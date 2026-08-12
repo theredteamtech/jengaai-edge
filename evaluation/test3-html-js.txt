@@ -1,0 +1,14 @@
+
+Create a single-file HTML application for calculating a student's average mark.
+
+Requirements:
+1. Inputs for Mathematics, English and Science.
+2. Every mark must be between 0 and 100.
+3. A Calculate button.
+4. Display the average to two decimal places.
+5. Display "Invalid mark" if any value is missing or outside 0–100.
+6. Use only HTML, CSS and vanilla JavaScript.
+7. Everything must be contained in one HTML file.
+8. Give complete working code.
+
+

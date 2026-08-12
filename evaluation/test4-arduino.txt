@@ -1,0 +1,21 @@
+
+I have only:
+- Arduino Uno
+- one HC-SR04 ultrasonic sensor
+- one SG90 servo motor
+- jumper wires
+
+Create an automatic dustbin.
+
+Requirements:
+1. Open when an object is 40 cm or nearer.
+2. Remain open while the object remains within 40 cm.
+3. Close 2 seconds after the object leaves.
+4. If the object returns before the 2 seconds finish, keep the lid open.
+5. Do not use any component I did not list.
+6. Give every pin connection.
+7. Give complete Arduino code.
+8. Handle the case where the HC-SR04 receives no echo.
+9. Do not use an external ultrasonic library.
+
+

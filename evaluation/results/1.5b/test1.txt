@@ -1,0 +1,46 @@
+User:
+
+The following Python function is supposed to return the average of valid numeric values, while ignoring None values. It contains bugs.
+
+```python
+def average(values):
+    total = 0
+    for value in values:
+        total += value
+    return total / len(values)
+
+Correct the function so that:
+
+None values are ignored.
+An empty list returns 0.
+A list containing only None values returns 0.
+Do not use external libraries.
+Give the corrected code and briefly explain the bugs.
+
+Assistant:
+The function `average` is supposed to return the average of valid numeric values, while ignoring None values. However, it contains bugs. The bugs are:
+
+1. The function does not check if the value is numeric before adding it to the total.
+2. The function does not handle the case where the list is empty.
+
+Here is the corrected function:
+
+```python
+def average(values):
+    total = 0
+    count = 0
+    for value in values:
+        if value is not None and isinstance(value, (int, float)):
+            total += value
+            count += 1
+    if count == 0:
+        return 0
+    return total / count
+```
+
+Explanation of the corrections:
+
+1. The function now checks if the value is not None and is an instance of (int, float) before adding it to the total. This ensures that only numeric values are added to the total.
+2. The function now keeps track of the count of valid numeric values. If the count is 0, it means the list is empty, and the function returns 0.
+3. The function now returns the total divided by the count, which gives the average of the valid numeric values.
+

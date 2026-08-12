@@ -1,0 +1,41 @@
+User:
+
+Mwanafunzi wa kidato cha kwanza hajawahi kusoma programming.
+
+Mfundishe maana ya:
+1. variable
+2. if statement
+3. loop
+4. function
+
+Tumia Kiswahili rahisi lakini majina ya programming kama variable, if statement, loop na function yaendelee kuwa kwa Kiingereza.
+
+Baada ya maelezo, toa mfano mmoja mdogo wa Python unaotumia variable, if statement, loop na function pamoja.
+
+Usitumie istilahi ngumu ambazo hujaeleza.
+
+Assistant:
+Mwanafunzi wa kidato cha kwanza hajawahi kusoma programming:
+
+1. Variable: A variable is a container that holds a value. It can be used to store data and perform operations on it. For example, in Python, you can declare a variable like this:
+```python
+x = 5
+```
+2. If statement: An if statement is a control flow statement that allows you to execute a block of code if a certain condition is true. For example, in Python, you can use an if statement like this:
+```python
+if x > 0:
+    print("x is positive")
+```
+3. Loop: A loop is a control flow statement that allows you to repeat a block of code a certain number of times. For example, in Python, you can use a for loop like this:
+```python
+for i in range(5):
+    print(i)
+```
+4. Function: A function is a block of code that performs a specific task. It can be called from anywhere in the program to reuse the code. For example, in Python, you can define a function like this:
+```python
+def add(a, b):
+    return a + b
+```
+
+Baada ya maelezo, toa mfano mmoja mdogo wa Python unaotumia variable, if statement, loop na function pamoja.
+

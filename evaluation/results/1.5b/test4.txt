@@ -1,0 +1,114 @@
+User:
+
+I have only:
+- Arduino Uno
+- one HC-SR04 ultrasonic sensor
+- one SG90 servo motor
+- jumper wires
+
+Create an automatic dustbin.
+
+Requirements:
+1. Open when an object is 40 cm or nearer.
+2. Remain open while the object remains within 40 cm.
+3. Close 2 seconds after the object leaves.
+4. If the object returns before the 2 seconds finish, keep the lid open.
+5. Do not use any component I did not list.
+6. Give every pin connection.
+7. Give complete Arduino code.
+8. Handle the case where the HC-SR04 receives no echo.
+9. Do not use an external ultrasonic library.
+
+Assistant:
+To create an automatic dustbin using the Arduino Uno, HC-SR04 ultrasonic sensor, and SG90 servo motor, you can follow these steps:
+
+### Step 1: Hardware Setup
+1. **Connect the HC-SR04 Sensor:**
+   - Connect the trigger pin of the HC-SR04 to pin 9 of the Arduino Uno.
+   - Connect the echo pin of the HC-SR04 to pin 10 of the Arduino Uno.
+   - Connect the ground pin of the HC-SR04 to ground.
+
+2. **Connect the SG90 Servo Motor:**
+   - Connect the signal pin of the SG90 to pin 5 of the Arduino Uno.
+   - Connect the ground pin of the SG90 to ground.
+
+### Step 2: Software Setup
+1. **Include Necessary Libraries:**
+   - You do not need any external libraries for this project.
+
+2. **Arduino Code:**
+   ```cpp
+   #include <Servo.h>
+
+   // Define the pins
+   const int triggerPin = 9;
+   const int echoPin = 10;
+   const int servoPin = 5;
+   const int openTime = 2000; // 2 seconds in milliseconds
+   const int closeTime = 1000; // 1 second in milliseconds
+
+   // Initialize the servo
+   Servo servo;
+
+   void setup() {
+     // Initialize the serial communication
+     Serial.begin(9600);
+
+     // Attach the servo to the pin
+     servo.attach(servoPin);
+
+     // Set the initial position of the servo
+     servo.write(90); // Center position
+   }
+
+   void loop() {
+     // Measure the distance to the object
+     long duration = measureDistance();
+     float distance = duration / 29.1; // Convert to centimeters
+
+     // Check if the object is within 40 cm
+     if (distance <= 40) {
+       // Open the dustbin
+       servo.write(0);
+       delay(openTime);
+
+       // Wait for the object to leave
+       while (distance <= 40) {
+         duration = measureDistance();
+         distance = duration / 29.1; // Convert to centimeters
+       }
+
+       // Close the dustbin
+       servo.write(90);
+       delay(closeTime);
+     }
+   }
+
+   long measureDistance() {
+     // Send a pulse to the trigger pin
+     digitalWrite(triggerPin, LOW);
+     delayMicroseconds(2);
+     digitalWrite(triggerPin, HIGH);
+     delayMicroseconds(10);
+     digitalWrite(triggerPin, LOW);
+
+     // Measure the duration of the pulse
+     long duration = pulseIn(echoPin, HIGH);
+
+     return duration;
+   }
+   ```
+
+### Step 3: Handling No Echo
+If the HC-SR04 does not receive an echo, you can handle it by checking the duration of the pulse. If the duration is too short, it means the object is not present, and you can open the dustbin immediately.
+
+### Step 4: Case Handling
+If the object returns before the 2 seconds finish, you can keep the lid open. This can be done by adding a condition to check if the object has returned within the 2 seconds.
+
+### Step 5: Additional Notes
+- Ensure that the HC-SR04 is properly calibrated to measure distances accurately.
+- The servo motor should be calibrated to open and close the dustbin correctly.
+- The code assumes that the object is within the range of the HC-SR04's echo pin. If the object is outside this range, you may need to adjust the code accordingly.
+
+This setup should create an automatic dustbin that opens when an object is within 40 cm, remains open while the object remains within 40 cm, closes 2 seconds after the object leaves, and keeps the lid open if the object returns before the 2 seconds finish.
+

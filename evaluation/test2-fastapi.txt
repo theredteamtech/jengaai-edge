@@ -1,0 +1,14 @@
+
+Create a small FastAPI application for recording student attendance.
+
+Requirements:
+1. POST /attendance accepts student_name and status.
+2. status must only be "present" or "absent".
+3. Store records in memory only.
+4. GET /attendance returns all records.
+5. GET /attendance/{student_name} returns that student's records.
+6. Return HTTP 404 if the student does not exist.
+7. Give complete runnable Python code.
+8. Do not use a database or external service.
+
+

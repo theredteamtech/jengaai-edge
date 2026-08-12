@@ -1,0 +1,95 @@
+User:
+
+Create a single-file HTML application for calculating a student's average mark.
+
+Requirements:
+1. Inputs for Mathematics, English and Science.
+2. Every mark must be between 0 and 100.
+3. A Calculate button.
+4. Display the average to two decimal places.
+5. Display "Invalid mark" if any value is missing or outside 0–100.
+6. Use only HTML, CSS and vanilla JavaScript.
+7. Everything must be contained in one HTML file.
+8. Give complete working code.
+
+Assistant:
+Certainly! Below is a complete single-file HTML application that calculates a student's average mark based on the given requirements:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Average Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        input[type="number"] {
+            width: 50px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Average Calculator</h1>
+    <form id="averageForm">
+        <label for="math">Mathematics:</label>
+        <input type="number" id="math" name="math" min="0" max="100" required>
+        
+        <label for="english">English:</label>
+        <input type="number" id="english" name="english" min="0" max="100" required>
+        
+        <label for="science">Science:</label>
+        <input type="number" id="science" name="science" min="0" max="100" required>
+        
+        <button type="button" onclick="calculateAverage()">Calculate</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function calculateAverage() {
+            const math = parseFloat(document.getElementById('math').value);
+            const english = parseFloat(document.getElementById('english').value);
+            const science = parseFloat(document.getElementById('science').value);
+
+            if (isNaN(math) || isNaN(english) || isNaN(science)) {
+                document.getElementById('result').textContent = "Invalid mark";
+                return;
+            }
+
+            if (math < 0 || math > 100 || english < 0 || english > 100 || science < 0 || science > 100) {
+                document.getElementById('result').textContent = "Invalid mark";
+                return;
+            }
+
+            const average = (math + english + science) / 3;
+            document.getElementById('result').textContent = `Average: ${average.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
+```
+
+### Explanation:
+- **HTML Structure**: The form contains three input fields for Mathematics, English, and Science, each with a `min` and `max` attribute to ensure the marks are between 0 and 100.
+- **CSS Styling**: Basic styling is applied to make the form and result display more readable.
+- **JavaScript Functionality**:
+  - The `calculateAverage` function retrieves the values from the input fields.
+  - It checks if any of the inputs are missing or outside the valid range (0-100).
+  - If valid, it calculates the average and displays it to two decimal places.
+  - If any input is invalid, it displays "Invalid mark".
+

@@ -1,37 +1,37 @@
 {
-  "team_id": "your-team-id",
+  "team_id": "jengaai-edge",
   "domain": "coding_assistants",
   "language_scope": ["en"],
-  "african_alpha_claim": false,
+  "african_alpha_claim": true,
   "budget_laptop_claim": true,
   "submitter": {
-    "name": "your-name",
-    "email": "your-email@domain.com",
-    "github_handle": "your-github"
+    "name": "ABDULKARIM MOHAMMED NGULANGWA",
+    "email": "theredteam.tech@gmail.com",
+    "github_handle": "theredteamtech"
   },
   "cross_disciplinary_pairing": {
     "discipline": "education",
     "load_bearing": true,
-    "description": "Brief description of how your model serves a real-world domain."
+    "description": "JengaCoder is an offline coding and engineering assistant designed to help students and developers build, debug, and understand software and embedded-system projects on affordable laptops without depending on cloud AI services."
   },
   "test_prompts": [
     {
       "prompt_id": "tp_001",
-      "prompt": "Write a Python function that reads a CSV file and returns the column with the highest mean value."
+      "prompt": "Write a complete Python function called calculate_average that accepts a list of numbers. Return 0 for an empty list. Include two example calls."
     },
     {
       "prompt_id": "tp_002",
-      "prompt": "Explain the difference between a list and a tuple in Python, and give one example where each is the better choice."
+      "prompt": "I have an Arduino Uno, one HC-SR04 ultrasonic sensor, one SG90 servo motor, and jumper wires. Create a simple automatic dustbin that opens when a person is within 40 cm. Give me the pin connections, complete Arduino code, and a short testing procedure. Do not use components I did not mention."
     }
   ],
   "model": {
-    "name": "SmolLM2-135M-Instruct-Q4_K_M",
+    "name": "JengaCoder-v1.2-Q4_K_M",
     "runtime": "llama.cpp",
     "quantization": "GGUF Q4_K_M",
-    "parameters_estimate": "135M",
+    "parameters_estimate": "1.54B",
     "packaging": "binary_bundle"
   },
   "_runtime": {
-    "model_path": "model/SmolLM2-135M-Instruct-Q4_K_M.gguf"
+    "model_path": "model/JengaCoder-v1.2-Q4_K_M.gguf"
   }
 }

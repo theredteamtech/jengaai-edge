@@ -1,0 +1,51 @@
+User:
+You are working on a laptop that is permanently offline. Python 3.10 is already installed. No third-party packages are installed, and you are not allowed to install any.
+
+Write a complete Python program that:
+1. Reads a local file named students.json.
+2. The file contains a JSON list of objects with "name" and "score" fields.
+3. Prints only the names of students whose score is 50 or higher.
+4. Handles a missing file gracefully.
+5. Handles malformed JSON gracefully.
+6. Uses only the Python standard library.
+
+Do not use or mention pip, requests, pandas, internet access, package installation, or any third-party library.
+
+Give only the complete program followed by a short explanation.
+
+Assistant:
+```python
+import json
+
+# Function to read the file and print the names of students with score 50 or higher
+def print_high_scoring_students(filename):
+    try:
+        with open(filename, 'r') as file:
+            # Load JSON data from the file
+            data = json.load(file)
+            # Filter students with score 50 or higher
+            high_scoring_students = [student['name'] for student in data if student['score'] >= 50]
+            # Print the names of the high scoring students
+            for student in high_scoring_students:
+                print(student)
+    except FileNotFoundError:
+        print("Error: The file 'students.json' was not found.")
+    except json.JSONDecodeError:
+        print("Error: The JSON file is malformed.")
+
+# Main function to run the program
+def main():
+    filename = 'students.json'
+    print_high_scoring_students(filename)
+
+# Run the main function
+if __name__ == "__main__":
+    main()
+```
+
+Explanation:
+- The program starts by importing the `json` module, which is necessary for handling JSON files.
+- The `print_high_scoring_students` function is defined to read the JSON file, filter students based on their score, and print their names. It uses a try-except block to handle potential errors such as file not found or malformed JSON.
+- The `main` function sets the filename and calls `print_high_scoring_students` to execute the program.
+- The program is executed by calling the `main` function if the script is run directly.
+

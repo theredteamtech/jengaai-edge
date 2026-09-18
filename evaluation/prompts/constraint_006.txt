@@ -1,0 +1,23 @@
+You have exactly these components:
+
+- Arduino Uno
+- One push button
+- One LED
+- One 220 ohm resistor
+- Jumper wires
+
+Build a circuit where the LED is ON only while the button is being pressed.
+
+Requirements:
+1. Use the Arduino's internal pull-up resistor for the push button.
+2. Connect the push button between digital pin 2 and GND.
+3. Connect the LED to digital pin 8 through the 220 ohm resistor.
+4. The button input must use INPUT_PULLUP.
+5. Because INPUT_PULLUP is used, LOW must mean "button pressed".
+6. Give pin-by-pin wiring.
+7. Give a complete Arduino sketch.
+8. Give a short test procedure.
+9. Do not add, use, or mention any component that is not listed above.
+10. Do not change the specified pin numbers.
+
+Give only the wiring, code, and test procedure.

@@ -1,0 +1,24 @@
+Write a complete Python 3.10 program that processes a potentially very large text file named temperatures.txt.
+
+Each valid line contains one signed integer temperature, for example:
+
+25
+-3
+41
+
+Requirements:
+1. Read the file line by line. Do not load the whole file into memory.
+2. Print only temperatures greater than or equal to 30.
+3. Preserve the original order.
+4. Ignore blank lines.
+5. If a non-blank line is not a valid integer, skip that line without terminating the program.
+6. If temperatures.txt does not exist, print exactly:
+FILE NOT FOUND
+7. Use only the Python standard library.
+8. Do not create another file.
+9. Do not use read(), readlines(), list(), comprehensions, pandas, numpy, or any third-party package.
+10. Use O(1) additional memory apart from Python's normal per-line input buffering.
+11. Do not store the matching temperatures for later printing.
+12. Give only the complete Python program followed by a short explanation.
+
+The program must work correctly even if temperatures.txt is much larger than available RAM.

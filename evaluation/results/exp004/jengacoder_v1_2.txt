@@ -1,0 +1,33 @@
+User:
+Write a complete Python 3.10 program that processes this fixed list:
+
+numbers = [12, -3, 0, 7, 8, 15, -2, 4]
+
+Requirements:
+1. Print the sum of only the positive even numbers.
+2. Zero must not be counted as positive.
+3. Do not modify the original list.
+4. Do not create another list, tuple, set, or dictionary.
+5. Do not use sum(), filter(), map(), reduce(), comprehensions, or recursion.
+6. Use exactly one loop.
+7. Use O(1) additional memory.
+8. The program must print exactly:
+
+24
+
+Do not print labels, explanations, debug information, or any other output.
+
+Return only the complete Python program.
+
+Assistant:
+```python
+numbers = [12, -3, 0, 7, 8, 15, -2, 4]
+
+total = 0
+for n in numbers:
+    if n > 0 and n % 2 == 0:
+        total += n
+
+print(total)
+```
+

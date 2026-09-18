@@ -1,0 +1,1 @@
+You have an Arduino Uno, one HC-SR04 ultrasonic sensor, one LED, one 220 ohm resistor, and jumper wires only. Build a proximity warning system where the LED turns on when an object is 25 cm or closer. Give pin-by-pin wiring, complete Arduino code, and a short test procedure. Do not use or mention any component that is not listed.

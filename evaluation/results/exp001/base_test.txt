@@ -1,0 +1,6 @@
+User:
+Reply with exactly: BASE MODEL WORKS
+
+Assistant:
+BASE MODEL WORKS
+

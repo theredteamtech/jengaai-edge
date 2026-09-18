@@ -1,0 +1,49 @@
+User:
+You are working on a permanently offline laptop with Python 3.10 installed.
+
+No third-party packages are installed, and you are not allowed to install any.
+
+Write a complete Python program that starts a local HTTP server on port 8000 with exactly one endpoint:
+
+GET /health
+
+For GET /health, return:
+
+{"status":"ok"}
+
+Requirements:
+1. Use only the Python standard library.
+2. Do not use or mention Flask, FastAPI, Django, requests, pip, package installation, or internet access.
+3. Return HTTP status 200 for /health.
+4. Return HTTP status 404 for every other path.
+5. Set Content-Type to application/json for the /health response.
+6. The program must run directly with Python 3.10.
+7. Do not create any files.
+8. Give only the complete program followed by a short explanation.
+
+Do not add any other endpoint or functionality.
+
+Assistant:
+```python
+import http.server
+import socketserver
+
+class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/health':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(b'{"status":"ok"}')
+        else:
+            self.send_response(404)
+
+PORT = 8000
+
+with socketserver.TCPServer(("", PORT), SimpleHTTPRequestHandler) as httpd:
+    print(f"Serving at port {PORT}")
+    httpd.serve_forever()
+```
+
+This program uses the `http.server` module to create a simple HTTP server. It defines a custom handler that responds to GET requests to `/health` with a JSON status message. For any other path, it returns a 404 status. The server listens on port 8000 directly.
+

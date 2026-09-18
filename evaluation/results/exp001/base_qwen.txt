@@ -1,0 +1,69 @@
+User:
+You have an Arduino Uno, one HC-SR04 ultrasonic sensor, one LED, one 220 ohm resistor, and jumper wires only. Build a proximity warning system where the LED turns on when an object is 25 cm or closer. Give pin-by-pin wiring, complete Arduino code, and a short test procedure. Do not use or mention any component that is not listed.
+
+Assistant:
+### Step 1: Wiring
+
+1. **Connect the HC-SR04 Sensor:**
+   - Connect the VCC pin of the HC-SR04 to the 5V pin of the Arduino.
+   - Connect the GND pin of the HC-SR04 to the GND pin of the Arduino.
+   - Connect the Trig pin of the HC-SR04 to digital pin 9 of the Arduino.
+   - Connect the Echo pin of the HC-SR04 to digital pin 10 of the Arduino.
+
+2. **Connect the LED:**
+   - Connect the positive terminal of the LED to digital pin 2 of the Arduino.
+   - Connect the negative terminal of the LED to the GND pin of the Arduino.
+
+3. **Connect the Resistor:**
+   - Connect the positive terminal of the resistor to the positive terminal of the LED.
+   - Connect the negative terminal of the resistor to the GND pin of the Arduino.
+
+### Step 2: Arduino Code
+
+```cpp
+const int trigPin = 9;
+const int echoPin = 10;
+const int ledPin = 2;
+const int thresholdDistance = 25; // in cm
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  long duration = pulseIn(echoPin, HIGH);
+  float distance = duration * 0.0343; // convert microseconds to centimeters
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  if (distance <= thresholdDistance) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(100);
+}
+```
+
+### Step 3: Test Procedure
+
+1. **Power Up the Arduino:**
+   - Connect the Arduino to your computer using a USB cable.
+   - Open the Arduino IDE and upload the code to the Arduino Uno.
+
+2. **Observe the LED:**
+   - Place an object within 25 cm of the HC-SR04 sensor.
+   - Observe the LED. It should turn on when the object is within 25 cm of the sensor.
+
+3. **Move the Object:**
+   - Move the object away from the HC-SR04 sensor.
+   - Observe the LED. It should turn off when the object is more than 25 cm away from the sensor.
+
+This setup provides a simple proximity warning system using an Arduino Uno, an HC-SR04 ultrasonic sensor, and an LED. The LED turns on when an object is within 25 cm of the sensor, providing a basic form of obstacle detection.
+

@@ -1,0 +1,34 @@
+User:
+You are working on a laptop that is permanently offline. Python 3.10 is already installed. No third-party packages are installed, and you are not allowed to install any.
+
+Write a complete Python program that:
+1. Reads a local file named students.json.
+2. The file contains a JSON list of objects with "name" and "score" fields.
+3. Prints only the names of students whose score is 50 or higher.
+4. Handles a missing file gracefully.
+5. Handles malformed JSON gracefully.
+6. Uses only the Python standard library.
+
+Do not use or mention pip, requests, pandas, internet access, package installation, or any third-party library.
+
+Give only the complete program followed by a short explanation.
+
+Assistant:
+```python
+import json
+
+try:
+    with open('students.json') as f:
+        students = json.load(f)
+except FileNotFoundError:
+    print("File not found.")
+except json.JSONDecodeError:
+    print("Invalid JSON in the file.")
+
+for student in students:
+    if student['score'] >= 50:
+        print(student['name'])
+```
+
+This program opens `students.json`, reads its content, and prints names of students with scores 50 or higher. It handles missing files and malformed JSON gracefully, adhering to the problem constraints.
+

@@ -1,0 +1,18 @@
+You are programming a small embedded device with only 2 KB of RAM.
+
+Write a complete C++17 program that processes an existing array of 100 signed 16-bit integers and prints:
+1. The largest value in the array.
+2. How many times that largest value occurs.
+
+Constraints:
+- Use no recursion.
+- Use no dynamic memory allocation.
+- Do not use vector, map, set, unordered_map, or any container that allocates memory dynamically.
+- Use O(1) additional memory.
+- Traverse the array only once.
+- Use only the C++ standard library.
+- Do not create a second array or copy the input array.
+
+For demonstration, initialize the 100-element array directly in the program with sample values.
+
+Give only the complete C++ program followed by a short explanation of why it satisfies every constraint.

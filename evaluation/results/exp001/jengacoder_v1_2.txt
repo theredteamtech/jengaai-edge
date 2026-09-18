@@ -1,0 +1,122 @@
+User:
+You have an Arduino Uno, one HC-SR04 ultrasonic sensor, one LED, one 220 ohm resistor, and jumper wires only. Build a proximity warning system where the LED turns on when an object is 25 cm or closer. Give pin-by-pin wiring, complete Arduino code, and a short test procedure. Do not use or mention any component that is not listed.
+
+Assistant:
+### Pin-by-pin Wiring
+
+1. **HC-SR04 VCC -> Arduino 5V**
+2. **HC-SR04 GND -> Arduino GND**
+3. **HC-SR04 TRIG -> Arduino 9**
+4. **HC-SR04 ECHO -> Arduino A0**
+5. **LED red/VCC -> Arduino 5V**
+6. **LED red/GND -> Arduino GND**
+7. **LED green/VCC -> Arduino 5V**
+8. **LED green/GND -> Arduino GND**
+9. **LED blue/VCC -> Arduino 5V**
+10. **LED blue/GND -> Arduino GND**
+
+### Arduino Code
+
+```cpp
+#include <Servo.h>
+
+const int TRIG_PIN = 9;
+const int ECHO_PIN = A0;
+
+const int LED_RED_PIN = 6;
+const int LED_GREEN_PIN = 5;
+const int LED_BLUE_PIN = 3;
+
+const float THRESHOLD_CM = 25.0f;
+const float THRESHOLD_CM_RED = 10.0f;
+const float THRESHOLD_CM_GREEN = 20.0f;
+
+const int LED_ON = HIGH;
+const int LED_OFF = LOW;
+
+Servo lid;
+
+bool lidOpen = false;
+bool redLEDOn = false;
+bool greenLEDOn = false;
+bool blueLEDOn = false;
+
+float readDistanceCm() {
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+
+  digitalWrite(TRIG_PIN, LOW);
+
+  unsigned long duration =
+      pulseIn(ECHO_PIN, HIGH, 30000UL);
+
+  if (duration == 0) {
+    return -1.0f;
+  }
+
+  return duration * 0.0343f / 2.0f / 1000.0f;
+}
+
+void setup() {
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+
+  pinMode(LED_RED_PIN, OUTPUT);
+  pinMode(LED_GREEN_PIN, OUTPUT);
+  pinMode(LED_BLUE_PIN, OUTPUT);
+
+  lid.attach(2);
+  lid.write(0);
+}
+
+void loop() {
+  float distance = readDistanceCm();
+
+  bool objectPresent = distance > 0 && distance <= THRESHOLD_CM;
+
+  bool lidOpenNew = objectPresent && !lidOpen;
+
+  bool redLEDOnNew = objectPresent && distance <= THRESHOLD_CM_RED;
+
+  bool greenLEDOnNew = objectPresent && distance <= THRESHOLD_CM_GREEN;
+
+  bool blueLEDOnNew = !objectPresent;
+
+  if (lidOpenNew) {
+    lid.write(90);
+  } else if (lidOpen) {
+    lid.write(0);
+  }
+
+  if (redLEDOnNew) {
+    digitalWrite(LED_RED_PIN, LED_ON);
+  } else {
+    digitalWrite(LED_RED_PIN, LED_OFF);
+  }
+
+  if (greenLEDOnNew) {
+    digitalWrite(LED_GREEN_PIN, LED_ON);
+  } else {
+    digitalWrite(LED_GREEN_PIN, LED_OFF);
+  }
+
+  if (blueLEDOnNew) {
+    digitalWrite(LED_BLUE_PIN, LED_ON);
+  } else {
+    digitalWrite(LED_BLUE_PIN, LED_OFF);
+  }
+
+  delay(50);
+}
+```
+
+### Test Procedure
+
+1. Connect the HC-SR04 sensor to the Arduino.
+2. Upload the code to the Arduino.
+3. Observe the LED behavior. The red LED should turn on when the object is 10 cm or closer, the green LED should turn on when the object is 20 cm or closer, and the blue LED should turn off when the object is 25 cm or further away.
+4. Adjust the thresholds and colors as needed.
+

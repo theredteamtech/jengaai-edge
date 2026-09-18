@@ -1,0 +1,59 @@
+User:
+You have exactly these components:
+
+- Arduino Uno
+- One 10k ohm potentiometer
+- One LED
+- One 220 ohm resistor
+- Jumper wires
+
+Build a circuit where turning the potentiometer smoothly changes the brightness of the LED.
+
+Requirements:
+1. Connect one outer potentiometer pin to Arduino 5V.
+2. Connect the other outer potentiometer pin to Arduino GND.
+3. Connect the potentiometer wiper to analog pin A0.
+4. Connect the LED to PWM-capable digital pin 9 through the 220 ohm resistor.
+5. Read the potentiometer using analogRead(A0).
+6. Convert the 0-1023 analog reading to a 0-255 PWM value.
+7. Control LED brightness using analogWrite(9, value).
+8. Do not use INPUT_PULLUP.
+9. Do not change the specified pins.
+10. Do not add, use, or mention any component that is not listed above.
+11. Give pin-by-pin wiring.
+12. Give a complete Arduino sketch.
+13. Give a short test procedure.
+
+Give only the wiring, code, and test procedure.
+
+Assistant:
+Wiring:
+- Connect Arduino 5V to the outer potentiometer's 5V pin.
+- Connect Arduino GND to the outer potentiometer's GND pin.
+- Connect the potentiometer's wiper to analog pin A0.
+- Connect the LED to digital pin 9 through the 220 ohm resistor.
+
+Arduino Sketch:
+```
+void setup() {
+  pinMode(9, OUTPUT); // Set digital pin 9 as output
+}
+
+void loop() {
+  int potValue = analogRead(A0); // Read the value from analog pin A0
+  int brightness = map(potValue, 0, 1023, 0, 255); // Map the value to a 0-255 range
+  analogWrite(9, brightness); // Set the brightness of the LED
+  delay(10); // Delay for 10 milliseconds
+}
+```
+
+Test Procedure:
+1. Connect the Arduino Uno to your computer.
+2. Upload the sketch to the Arduino Uno.
+3. Connect the LED to a breadboard and connect it to pin 9 of the Arduino Uno.
+4. Connect the potentiometer to the breadboard and connect it to analog pin A0.
+5. Power on the Arduino Uno.
+6. Move the potentiometer from its lowest position to its highest position.
+7. Observe the LED's brightness change as you move the potentiometer.
+8. Adjust the potentiometer's position to see the LED's brightness change accordingly.
+

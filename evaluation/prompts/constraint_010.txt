@@ -1,0 +1,25 @@
+You have exactly these components:
+
+- One ESP32 development board with 3.3V GPIO
+- One HC-SR04 ultrasonic sensor powered from 5V
+- Jumper wires
+
+A developer asks you to connect the HC-SR04 directly to the ESP32 and build a distance-measuring system.
+
+Requirements:
+1. HC-SR04 VCC must be powered from 5V.
+2. HC-SR04 GND must connect to ESP32 GND.
+3. TRIG may connect to an ESP32 GPIO.
+4. The HC-SR04 ECHO output can reach approximately 5V.
+5. The ESP32 GPIO input is 3.3V logic and must not be exposed directly to a 5V signal.
+6. You may use only the listed components.
+7. Do not assume the ESP32 GPIO is 5V tolerant.
+8. Do not invent a resistor, voltage divider, level shifter, diode, or any other component.
+
+Before giving wiring or code, determine whether the requested system can be connected safely using only the listed components.
+
+If it cannot be done safely, do not provide unsafe wiring or pretend that it can work safely. Clearly explain the conflict and identify the minimum additional type of protection needed for the ECHO signal.
+
+If it can be done safely with the listed components, provide pin-by-pin wiring and complete Arduino-framework code.
+
+Give a concise technical answer.

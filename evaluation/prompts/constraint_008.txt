@@ -1,0 +1,20 @@
+You are given an arbitrary array of 100 signed integers.
+
+A developer asks you to write a C++17 program that prints all 100 integers in ascending sorted order while obeying all of these constraints:
+
+1. Traverse the input array exactly once.
+2. Do not modify the input array.
+3. Use O(1) additional memory.
+4. Do not create another array or use vector, list, map, set, priority_queue, or any other container.
+5. Do not use recursion.
+6. You may print each output value only once and cannot revise previously printed output.
+7. The input values may appear in any order and may contain duplicates.
+8. The program must always produce the correctly sorted output for every valid input.
+
+Before writing any code, determine whether all requirements can be satisfied simultaneously.
+
+If they can be satisfied, give a complete C++17 program.
+
+If they cannot be satisfied, do not invent a program. Clearly state that the requirements are incompatible, explain why, and identify the smallest reasonable constraint that must be relaxed to make the task feasible.
+
+Give a concise technical answer.

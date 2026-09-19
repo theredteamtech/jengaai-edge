@@ -1,0 +1,144 @@
+{
+  "version": "v2",
+  "families": {
+    "physical_electrical_grounding": {
+      "train": {
+        "uno_tmp36_temperature_led": 9,
+        "esp32_dht22_environment": 9,
+        "uno_pir_buzzer_alarm": 9,
+        "esp32_ds18b20_temperature": 9,
+        "uno_joystick_dual_axis": 9,
+        "esp32_bmp280_i2c_pressure": 9,
+        "uno_reed_switch_status_led": 9,
+        "esp32_capacitive_touch_led": 9,
+        "uno_74hc595_led_output": 9,
+        "esp32_mpu6050_i2c_motion": 9
+      },
+      "validation": {
+        "uno_mq2_analog_gas": 6,
+        "esp32_soil_moisture_analog": 6,
+        "uno_thermistor_voltage_divider": 6
+      },
+      "holdout": {
+        "esp32_vl53l0x_i2c_distance": 4,
+        "uno_ir_obstacle_sensor": 4,
+        "esp32_bme280_environment": 4
+      }
+    },
+    "global_constraint_consistency": {
+      "train": {
+        "python_json_stdlib_only": 6,
+        "cpp_fixed_array_no_vector": 6,
+        "offline_html_local_storage": 6,
+        "python_sqlite_no_orm": 6,
+        "arduino_no_extra_components": 6,
+        "cpp_no_recursion_memory_limit": 6,
+        "python_stream_processing_no_full_load": 6,
+        "javascript_no_framework_no_network": 6,
+        "embedded_fixed_pins_no_remap": 6,
+        "python_cli_no_third_party": 6
+      },
+      "validation": {
+        "cpp_no_dynamic_allocation": 4,
+        "python_config_no_yaml_library": 4,
+        "arduino_single_output_device_only": 4
+      },
+      "holdout": {
+        "python_xml_stdlib_only": 4,
+        "embedded_no_new_hardware": 4
+      }
+    },
+    "contrastive_embedded_reasoning": {
+      "train": {
+        "active_high_vs_active_low_led": 5,
+        "pullup_button_vs_pulldown_button": 5,
+        "analog_sensor_vs_digital_sensor": 5,
+        "pwm_pin_vs_non_pwm_pin": 5,
+        "3v3_logic_vs_5v_logic": 5,
+        "i2c_shared_bus_vs_dedicated_gpio": 4,
+        "open_drain_vs_push_pull": 4,
+        "common_anode_vs_common_cathode_rgb": 4,
+        "internal_pullup_vs_external_resistor": 4,
+        "sensor_power_voltage_vs_signal_voltage": 4
+      },
+      "validation": {
+        "relay_active_low_vs_active_high": 3,
+        "analog_output_claim_vs_pwm_reality": 3,
+        "spi_cs_shared_bus_reasoning": 3
+      },
+      "holdout": {
+        "input_only_pin_vs_output_pin": 3,
+        "logic_level_safe_vs_unsafe_connection": 3
+      }
+    },
+    "control_flow_postconditions": {
+      "train": {
+        "max_value_with_first_element": 5,
+        "running_total_with_invalid_rows": 5,
+        "menu_loop_until_exit": 5,
+        "search_with_not_found_case": 5,
+        "counter_reset_after_threshold": 5,
+        "state_machine_idle_active_error": 4,
+        "retry_loop_with_limit": 4,
+        "average_with_empty_input": 4,
+        "first_match_vs_all_matches": 4,
+        "nested_condition_boundary_cases": 4
+      },
+      "validation": {
+        "minimum_value_negative_numbers": 3,
+        "loop_exact_iteration_count": 3,
+        "flag_updated_after_success": 3
+      },
+      "holdout": {
+        "sentinel_loop_final_state": 3,
+        "branch_postcondition_consistency": 3
+      }
+    },
+    "board_api_correctness": {
+      "train": {
+        "uno_pwm_analogwrite": 3,
+        "esp32_ledc_pwm": 3,
+        "uno_i2c_wire_library": 3,
+        "esp32_adc_pin_selection": 3,
+        "uno_interrupt_capable_pins": 3,
+        "esp32_input_only_gpio": 3,
+        "uno_serial_baud_setup": 3,
+        "esp32_wifi_api_local_usage": 3,
+        "uno_eeprom_api": 3,
+        "esp32_dac_supported_pins": 3
+      },
+      "validation": {
+        "uno_no_analogwriterange": 2,
+        "esp32_touchread_supported_pins": 2,
+        "uno_spi_default_pins": 2
+      },
+      "holdout": {
+        "esp32_pwm_channel_configuration": 2,
+        "uno_analog_input_vs_digital_pin": 2
+      }
+    },
+    "preservation_general_coding": {
+      "train": {
+        "python_string_processing": 3,
+        "python_dictionary_aggregation": 3,
+        "python_file_parsing": 3,
+        "cpp_array_statistics": 3,
+        "cpp_function_parameters": 3,
+        "javascript_dom_form_validation": 3,
+        "html_css_responsive_layout": 3,
+        "python_exception_handling": 3,
+        "cpp_loop_patterns": 3,
+        "python_list_filtering": 3
+      },
+      "validation": {
+        "python_nested_dictionary_lookup": 2,
+        "cpp_string_processing": 2,
+        "javascript_array_transformation": 2
+      },
+      "holdout": {
+        "python_text_frequency": 2,
+        "cpp_basic_class_design": 2
+      }
+    }
+  }
+}

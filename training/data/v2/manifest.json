@@ -1,0 +1,53 @@
+{
+  "version": "v2",
+  "new_records_target": 400,
+  "splits": {
+    "train": 300,
+    "validation": 60,
+    "holdout": 40
+  },
+  "families": {
+    "physical_electrical_grounding": {
+      "total": 120,
+      "train": 90,
+      "validation": 18,
+      "holdout": 12
+    },
+    "global_constraint_consistency": {
+      "total": 80,
+      "train": 60,
+      "validation": 12,
+      "holdout": 8
+    },
+    "contrastive_embedded_reasoning": {
+      "total": 60,
+      "train": 45,
+      "validation": 9,
+      "holdout": 6
+    },
+    "control_flow_postconditions": {
+      "total": 60,
+      "train": 45,
+      "validation": 9,
+      "holdout": 6
+    },
+    "board_api_correctness": {
+      "total": 40,
+      "train": 30,
+      "validation": 6,
+      "holdout": 4
+    },
+    "preservation_general_coding": {
+      "total": 40,
+      "train": 30,
+      "validation": 6,
+      "holdout": 4
+    }
+  },
+  "rules": [
+    "No ConstraintBench prompts or paraphrases in training",
+    "No Gate1 judge prompts or paraphrases in training",
+    "Keep scenario families separated across splits",
+    "Verify every record before training"
+  ]
+}

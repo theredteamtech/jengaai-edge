@@ -1,0 +1,15 @@
+JengaCoder v1.2 training evidence
+=================================
+Method: QLoRA
+Base model: Qwen/Qwen2.5-Coder-1.5B-Instruct
+Training records: 160
+Validation records: 20
+Epochs: 2
+Seed: 42
+LoRA rank: 16
+LoRA alpha: 32
+LoRA dropout: 0.05
+4-bit training quantization: NF4 with double quantization
+Training script SHA256: 5843a0bed5a18687f6e5a93ba07a81bd60e5a0e9528772cdec1a9baf261c9dc1
+
+Limitation: the original per-step console/loss transcript and adapter checkpoint were not retained in this repository. No loss values have been reconstructed or invented. The committed training script, immutable dataset checksums, final GGUF checksum and profiler results are the retained evidence.

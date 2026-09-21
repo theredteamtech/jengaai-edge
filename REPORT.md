@@ -29,7 +29,7 @@ JengaCoder v1.2 is based on Qwen2.5-Coder-1.5B-Instruct and was adapted toward p
 
 The 1.5B parameter size was selected because it provides a useful balance between code-generation capability and the memory and CPU limitations of an approximately 8 GB laptop.
 
-The model was adapted using LoRA-based fine-tuning with examples focused on coding, debugging, embedded systems and practical engineering instructions.
+The model was adapted using QLoRA fine-tuning with examples focused on coding, debugging, embedded systems and practical engineering instructions.
 
 Several later corrective experiments were evaluated during development. JengaCoder v1.3 and v1.4 attempted to improve hardware-constraint following and Kiswahili responses. Private evaluation revealed regressions such as unnecessary hardware generation and weaker instruction following in some embedded-system tasks. Those experimental versions were rejected.
 
@@ -49,6 +49,35 @@ Q4_K_M was selected because it provides a strong compromise between:
 The final GGUF is approximately 941 MB while retaining all 1.54 billion model parameters.
 
 The model runs through llama.cpp without GPU acceleration.
+
+
+### Model Provenance (Gate 2)
+
+JengaCoder v1.2 was produced by QLoRA fine-tuning of `Qwen/Qwen2.5-Coder-1.5B-Instruct`.
+
+- Base-model source: `huggingface:Qwen/Qwen2.5-Coder-1.5B-Instruct`
+- Recorded base-model revision: `2e1fd397ee46e1388853d2af2c993145b0f1098a`
+- Training dataset: 160 records, SHA256 `b40facb331160fab145a0b0b88f1a953ec21ffd2d629059f6bfd15bec56f194f`
+- Validation dataset: 20 records, SHA256 `a81ec8ae4c4fdc90ced02c6ad3ad0ed5aecd4c774cb5194707ad68345ad610df`
+- Training script SHA256: `5843a0bed5a18687f6e5a93ba07a81bd60e5a0e9528772cdec1a9baf261c9dc1`
+- Published-model revision: `acd5bc24661d3258176068478be483cd587839e3`
+- Final GGUF SHA256: `e253182086f2bfd9e48ee3e4b683f151276fa1dfc6510faea8be0824dbe433bc`
+
+The historical training script resolved the base repository's `main` revision without an explicit pin. The recorded base revision is a best-effort reconstruction: it was independently recorded as upstream `main` before the Gate 1 submission and remained current when this provenance was prepared. The exact runtime-resolved hash, original console loss transcript, adapter checkpoint, and merge-command transcript were not retained; no missing loss values or commands have been reconstructed.
+
+#### Base-versus-fine-tuned diagnostic
+
+A frozen 10-prompt ConstraintBench diagnostic produced:
+
+| Evaluation | Qwen base | JengaCoder v1.2 |
+| --- | ---: | ---: |
+| Overall ConstraintBench score | 77/100 | 59/100 |
+| Physical/electrical subset | 24/40 | 15/40 |
+
+This diagnostic does not support a claim of universal improvement from fine-tuning. It identified regressions in physical/electrical grounding and constraint consistency, while JengaCoder v1.2 was retained for its overall practical coding behavior and measured edge-inference performance. The repository contains the frozen prompts, rubrics, results and an in-progress v2 dataset redesign intended to address those weaknesses. The v2 data was not used to train the submitted v1.2 model.
+
+Supporting evidence is under `provenance/`, `training/`, and `evaluation/`.
+
 
 ---
 

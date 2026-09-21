@@ -1,7 +1,9 @@
 {
   "team_id": "jengaai-edge",
   "domain": "coding_assistants",
-  "language_scope": ["en"],
+  "language_scope": [
+    "en"
+  ],
   "african_alpha_claim": true,
   "budget_laptop_claim": true,
   "submitter": {
@@ -33,5 +35,14 @@
   },
   "_runtime": {
     "model_path": "model/JengaCoder-v1.2-Q4_K_M.gguf"
+  },
+  "provenance": {
+    "base_model_source": "huggingface:Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "base_model_commit_sha": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "fine_tuning_method": "qlora",
+    "training_datasets": [
+      "repo:training/data/jengacoder_train_v1.json (160 records; sha256:b40facb331160fab145a0b0b88f1a953ec21ffd2d629059f6bfd15bec56f194f)",
+      "repo:training/data/jengacoder_validation_v1.json (20 records; sha256:a81ec8ae4c4fdc90ced02c6ad3ad0ed5aecd4c774cb5194707ad68345ad610df)"
+    ]
   }
 }

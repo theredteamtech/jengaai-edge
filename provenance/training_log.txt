@@ -1,10 +1,12 @@
 JengaCoder v1.2 training evidence
 =================================
-Method: QLoRA
+
+Method: QLoRA supervised fine-tuning
 Base model: Qwen/Qwen2.5-Coder-1.5B-Instruct
 Training records: 160
 Validation records: 20
 Epochs: 2
+Final global step: 40
 Seed: 42
 LoRA rank: 16
 LoRA alpha: 32
@@ -12,4 +14,47 @@ LoRA dropout: 0.05
 4-bit training quantization: NF4 with double quantization
 Training script SHA256: 5843a0bed5a18687f6e5a93ba07a81bd60e5a0e9528772cdec1a9baf261c9dc1
 
-Limitation: the original per-step console/loss transcript and adapter checkpoint were not retained in this repository. No loss values have been reconstructed or invented. The committed training script, immutable dataset checksums, final GGUF checksum and profiler results are the retained evidence.
+Recovered original evidence
+---------------------------
+
+The original v1.2 adapter and final trainer state were recovered from the archived training output in the team's Google Drive:
+
+- provenance/adapter/adapter_model.safetensors
+- provenance/adapter/adapter_config.json
+- provenance/trainer_state.json
+
+The adapter configuration identifies the base model as Qwen/Qwen2.5-Coder-1.5B-Instruct and matches the retained training script: rank 16, alpha 32, dropout 0.05 and the same seven target projection modules.
+
+Selected authentic metrics from trainer_state.json
+---------------------------------------------------
+
+Step 1, epoch 0.05:
+- training loss: 1.1834560632705688
+- mean token accuracy: 0.5380510650575161
+
+Step 20, epoch 1.0:
+- training loss: 0.20244886875152587
+- evaluation loss: 1.0515105724334717
+- evaluation mean token accuracy: 0.7865106716752053
+
+Step 40, epoch 2.0:
+- training loss: 0.17701855897903443
+- mean token accuracy: 0.837432911247015
+- evaluation loss: 0.9508873224258423
+- evaluation mean token accuracy: 0.8057295680046082
+
+The complete, unmodified log history is retained in provenance/trainer_state.json.
+
+Evidence checksums
+------------------
+
+- Base model model.safetensors:
+  c1b9b30e907950516ba3c646bdf570d8084c25a6410a0cdca80cf04b11bc13a8
+- Adapter model:
+  34455431fea5a115d30d943f901153f86311a86bd60f2881e89d69d7772f9278
+- Adapter configuration:
+  4d5e1fea57f7744ad028bea86f1c886e9ef4092122c9c167b7a11d808c05338c
+- Trainer state:
+  5a44023a3bc3220ee6c62f1b2a4129724d91dc1c7d7797439d5b6ee287505432
+- Final Q4_K_M GGUF:
+  e253182086f2bfd9e48ee3e4b683f151276fa1dfc6510faea8be0824dbe433bc
